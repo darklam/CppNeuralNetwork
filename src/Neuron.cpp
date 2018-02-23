@@ -10,7 +10,7 @@ Neuron::Neuron(int inputs){
     }
 }
 
-double Neuron::feed(const doubleArrayRef in){
+double Neuron::feed(const doubleArray &in){
     double sum = 0.0;
 
     if(in.size() != this->weights.size()) return -1; // *** ghetto error code lol ***
@@ -22,7 +22,7 @@ double Neuron::feed(const doubleArrayRef in){
     return Functions::sigmoid(sum);
 }
 
-void Neuron::train(const doubleArrayRef deltas, const double &learningRate, const double &momentum){
+void Neuron::train(const doubleArray &deltas, const double &learningRate, const double &momentum){
     if(this->lastDeltas.empty()){
 
         for(int i = 0; i < this->weights.size(); i++){
@@ -40,15 +40,31 @@ void Neuron::train(const doubleArrayRef deltas, const double &learningRate, cons
     }
 }
 
+doubleArray Neuron::getWeights(){
+    return this->weights;
+}
+
+double Neuron::getWeight(const int &index){
+    return this->weights[index];
+}
+
+double Neuron::feed(const double &in){
+
+    doubleArray temp = {in};
+
+    return this->feed(temp);
+
+}
+
 BiasNeuron::BiasNeuron() : Neuron(0){
 
 }
 
-double BiasNeuron::feed(const doubleArrayRef){
+double BiasNeuron::feed(const doubleArray &in){
     return 1.0;
 }
 
-void BiasNeuron::train(const doubleArrayRef deltas, const double &learningRate, const double &momentum){
+void BiasNeuron::train(const doubleArray &deltas, const double &learningRate, const double &momentum){
     // Just do nothing lol
-    // Added this for compatibility reasons and to save myself from headacke lol
+    // Added this for compatibility reasons and to save myself from headache lol
 }

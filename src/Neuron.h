@@ -3,7 +3,6 @@
 
 #include <vector>
 
-typedef std::vector<double> & doubleArrayRef;
 typedef std::vector<double> doubleArray;
 
 
@@ -18,9 +17,15 @@ public:
 
     Neuron(int);
 
-    virtual double feed(const doubleArrayRef);
+    virtual double feed(const doubleArray &);
 
-    virtual void train(const doubleArrayRef, const double&, const double&);
+    virtual double feed(const double &);
+
+    virtual void train(const doubleArray &, const double&, const double&);
+
+    virtual doubleArray getWeights();
+
+    virtual double getWeight(const int &);
 
 
 };
@@ -31,9 +36,13 @@ public:
 
     BiasNeuron();
 
-    virtual double feed(const doubleArrayRef);
+    virtual double feed(const doubleArray &);
 
-    virtual void train(const doubleArrayRef, const double &, const double &);
+    virtual void train(const doubleArray &, const double &, const double &);
 };
+
+
+typedef std::shared_ptr<Neuron> neuronPtr;
+typedef std::vector<neuronPtr> neuronArray;
 
 #endif

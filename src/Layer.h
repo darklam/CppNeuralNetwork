@@ -5,8 +5,6 @@
 #include <memory>
 #include "Neuron.h"
 
-typedef std::shared_ptr<Neuron> neuronPtr;
-typedef std::vector<neuronPtr> neuronArray;
 
 class Layer {
 
@@ -14,12 +12,20 @@ protected:
 
     neuronArray neurons;
 
+    double momentum, learningRate;
+
 public:
 
-    Layer(const int&, const int&);
+    Layer(const int&, const int&, const double &, const double &);
 
-    virtual doubleArray feed(const doubleArrayRef) = 0;
+    virtual doubleArray feed(const doubleArray &) = 0;
+
+    virtual int getNeuronCount();
+
+    virtual neuronArray const getNeurons();
 
 };
+
+typedef std::shared_ptr<Layer> layerPtr;
 
 #endif
