@@ -11,11 +11,17 @@ using json = nlohmann::json;
 
 typedef std::vector<hiddenLayerPtr> hiddenLayerArray;
 
+typedef std::vector<layerPtr> layerArray;
+
 class Network {
 
 protected:
 
-    neuronArray layers;
+    inputLayerPtr inputLayer;
+    outputLayerPtr outputLayer;
+    hiddenLayerArray hiddenLayers;
+
+    layerArray layers;
 
     doubleArray momentums, learningRates;
 
@@ -25,6 +31,8 @@ protected:
 public:
 
     Network(const std::string &);
+
+    doubleArray feed(const doubleArray &);
 
 
 

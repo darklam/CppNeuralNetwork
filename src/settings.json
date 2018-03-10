@@ -1,0 +1,18 @@
+{
+    "momentums": [
+        0.1,
+        0.3,
+        0.4
+    ],
+    "inputs": 4,
+    "outputs": 2,
+    "hiddenLayers": [
+        7,
+        4
+    ],
+    "learningRates": [
+        0.1,
+        0.03,
+        0.01
+    ]
+}

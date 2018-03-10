@@ -1,14 +1,20 @@
-#include "InputLayer.h"
-#include "HiddenLayer.h"
-#include "OutputLayer.h"
+#include "Network.h"
+#include "Functions.h"
 #include <memory>
 #include <iostream>
 
 int main(){
 
-    inputLayerPtr p = inputLayerPtr(new InputLayer(5));
-    hiddenLayerPtr h = hiddenLayerPtr(new HiddenLayer(3, 4, 0.3, 0.1));
-    outputLayerPtr o = outputLayerPtr(new OutputLayer(3, 4, 0.3, 0.1));
+    networkPtr net = networkPtr(new Network("settings.json"));
+
+    doubleArray inputs = {
+        0.3,
+        0.2,
+        0.1,
+        0.8
+    };
+
+    Functions::printDoubleArray(net->feed(inputs));
 
     std::cout << "No errors!\n";
 
