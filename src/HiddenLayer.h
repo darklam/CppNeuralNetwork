@@ -26,4 +26,6 @@ public:
 
 };
 
+typedef std::shared_ptr<HiddenLayer> hiddenLayerPtr;
+
 #endif

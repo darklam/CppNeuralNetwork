@@ -1,6 +1,6 @@
 #include "InputLayer.h"
 
-InputLayer::InputLayer(const int &neuronCount) : Layer(neuronCount, 1, 0, 0){
+InputLayer::InputLayer(const int &neuronCount) : Layer(neuronCount, 1, 0, 0, "input"){
 
 }
 

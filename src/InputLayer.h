@@ -14,4 +14,6 @@ public:
 
 };
 
+typedef std::shared_ptr<InputLayer> inputLayerPtr;
+
 #endif

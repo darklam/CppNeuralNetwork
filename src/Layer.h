@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 #include "Neuron.h"
 
 
@@ -14,9 +15,11 @@ protected:
 
     double momentum, learningRate;
 
+    std::string type;
+
 public:
 
-    Layer(const int&, const int&, const double &, const double &);
+    Layer(const int&, const int&, const double &, const double &, const std::string &);
 
     virtual doubleArray feed(const doubleArray &) = 0;
 

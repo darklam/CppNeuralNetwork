@@ -2,6 +2,7 @@
 #define NEURON_H
 
 #include <vector>
+#include <memory>
 
 typedef std::vector<double> doubleArray;
 

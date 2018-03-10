@@ -2,7 +2,7 @@
 #include "Functions.h"
 
 HiddenLayer::HiddenLayer(const int &neuronCount, const int &inputsPerNeuron, const double &momentum, const double &learningRate) :
-Layer(neuronCount, inputsPerNeuron, momentum, learningRate){
+Layer(neuronCount, inputsPerNeuron, momentum, learningRate, "hidden"){
 
     this->neurons.push_back(neuronPtr(new BiasNeuron()));
 
