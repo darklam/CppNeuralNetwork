@@ -1,5 +1,6 @@
 #include "HiddenLayer.h"
 #include "Functions.h"
+#include <omp.h>
 
 HiddenLayer::HiddenLayer(const int &neuronCount, const int &inputsPerNeuron, const double &momentum, const double &learningRate) :
 Layer(neuronCount, inputsPerNeuron, momentum, learningRate, "hidden"){
@@ -23,6 +24,16 @@ doubleArray HiddenLayer::feed(const doubleArray &in){
 
 }
 
+neuronArray const HiddenLayer::getNeurons(){
+
+    neuronArray neurons = this->neurons;
+
+    neurons.pop_back();
+
+    return neurons;
+
+}
+
 // Don't know why I put const in the layerPtr argument to the right
 // while the rest are to the left (makes no difference) but I'll
 // keep it there to give the code some character before it develops
@@ -40,10 +51,12 @@ doubleArray HiddenLayer::trainLayer(
     neuronArray const nextLayer = next->getNeurons();
     doubleArray layerDeltas;
 
-    layerDeltas.resize(this->getNeuronCount());
+    layerDeltas.resize(this->getNeuronCount() - 1);
 
     // The -1 omits the last neuron (the bias)
 
+
+    #pragma omp parallel for
     for(int i = 0; i < this->getNeuronCount() - 1; i++){
 
         double sum = 0.0;

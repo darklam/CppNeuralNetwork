@@ -17,6 +17,8 @@ namespace Functions {
 
     void printDoubleArray(const doubleArray &);
 
+    double squaredError(const doubleArray &, const doubleArray &);
+
 }
 
 

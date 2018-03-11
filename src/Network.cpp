@@ -1,6 +1,8 @@
 #include "Network.h"
+#include "Functions.h"
 #include <fstream>
 #include <string>
+#include <iostream>
 
 typedef std::vector<std::string> stringArray;
 typedef std::vector<int> intArray;
@@ -95,9 +97,45 @@ void Network::train(const std::string &filename){
     
     std::vector<doubleArray> outputData = j["outputData"].get< std::vector<doubleArray> >();
 
-    for(int i = 0; i < inputData.size(); i++){
+    int times = j["trainEpoch"];
 
-        this->train(inputData[i], outputData[i]);
+    bool errorData = j["errorData"];
+
+    double errorTarget = j["errorTarget"];
+
+    double error = 1.0;
+
+    int counter = 0;
+
+    while(error > errorTarget && counter <= times){
+
+        if(errorData) error = 0.0;
+
+        for(int i = 0; i < inputData.size(); i++){
+
+            this->train(inputData[i], outputData[i]);
+
+            if(errorData){
+
+                doubleArray out = this->feed(inputData[i]);
+                
+                error += Functions::squaredError(outputData[i], out);
+
+            }
+
+        }
+
+        if(errorData){
+
+            error /= (double) inputData.size();
+
+            std::cout << "Error: " << error << std::endl;
+
+            if(error <= errorTarget) break;
+
+        }
+
+        if(times) counter++;
 
     }
 

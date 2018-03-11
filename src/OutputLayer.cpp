@@ -28,6 +28,8 @@ doubleArray OutputLayer::trainLayer(
     doubleArray layerDeltas;
     layerDeltas.resize(this->neurons.size());
 
+
+    #pragma omp parallel for
     for(int i = 0; i < layerDeltas.size(); i++){
 
         neuronPtr current = this->neurons[i];

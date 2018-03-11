@@ -24,3 +24,19 @@ void Functions::printDoubleArray(const doubleArray &in){
     std::cout << "}\n";
 
 }
+
+double Functions::squaredError(const doubleArray &expected, const doubleArray &out){
+
+    double sum = 0.0;
+
+    for(int i = 0; i < expected.size(); i++){
+
+        sum += pow(expected[i] - out[i], 2);
+
+    }
+
+    sum /= (double) expected.size();
+
+    return sum;
+
+}

@@ -24,6 +24,8 @@ public:
     // Returns: this layer's deltas
     virtual doubleArray trainLayer(const doubleArray &, layerPtr const, const doubleArray &, const doubleArray &);
 
+    virtual neuronArray const getNeurons();
+
 };
 
 typedef std::shared_ptr<HiddenLayer> hiddenLayerPtr;

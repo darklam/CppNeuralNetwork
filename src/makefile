@@ -1,5 +1,5 @@
 CXX := g++
-CPPFLAGS := -g3 -std=c++11
+CPPFLAGS := -O3 -std=c++11 -fopenmp
 CPPFILES := $(wildcard *.cpp)
 HFILES := $(wildcard *.h)
 OBJFILES := $(CPPFILES:.cpp=.o)

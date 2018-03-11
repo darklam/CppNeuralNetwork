@@ -9,16 +9,25 @@ int main(){
 
     networkPtr net = networkPtr(new Network("settings.json"));
 
-    doubleArray inputs = {
-        1.0,
-        0.0
+    std::vector< doubleArray > inputs = {
+        {1.0, 0.0},
+        {1.0, 1.0},
+        {0.0, 1.0},
+        {0.0, 0.0}
     };
 
-    for(int i = 0; i < 1000; i++) net->train("trainingData.json");
+    net->train("trainingData.json");
 
-    Functions::printDoubleArray(net->feed(inputs));
+    for(int i = 0; i < inputs.size(); i++){
 
-    std::cout << "No errors!\n";
+        Functions::printDoubleArray(inputs[i]);
+
+        std::cout << "Network output: ";
+        Functions::printDoubleArray(net->feed(inputs[i]));
+
+        std::cout << "\n\n";
+
+    }
 
     return 0;
 
