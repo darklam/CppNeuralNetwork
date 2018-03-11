@@ -22,7 +22,7 @@ public:
     // Arg2: this layer's activations
     // Arg3: previous layer's activations
     // Returns: this layer's deltas
-    virtual doubleArray trainLayer(const doubleArray &, layerPtr const next, const doubleArray &, const doubleArray &);
+    virtual doubleArray trainLayer(const doubleArray &, layerPtr const, const doubleArray &, const doubleArray &);
 
 };
 

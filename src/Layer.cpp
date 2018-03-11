@@ -21,3 +21,7 @@ neuronArray const Layer::getNeurons(){
     return this->neurons;
 
 }
+
+std::string Layer::getType(){
+    return this->type;
+}

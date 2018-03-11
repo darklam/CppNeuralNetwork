@@ -11,9 +11,9 @@ typedef std::vector<int> intArray;
 // or by Elon Musk to save us from Skynet remember that
 // it is all part of the plan :)
 
-Network::Network(const std::string &fileName){
+Network::Network(const std::string &filename){
 
-    std::ifstream i(fileName);
+    std::ifstream i(filename);
 
     json j;
 
@@ -69,12 +69,77 @@ doubleArray Network::feed(const doubleArray &in){
 
     doubleArray out = in;
 
-    for(auto &layer : this->layers){
+    for(const auto &layer : this->layers){
 
         out = layer->feed(out);
 
     }
 
     return out;
+
+}
+
+// filename is the json file containing the training data
+
+void Network::train(const std::string &filename){
+
+    std::ifstream i(filename);
+
+    json j;
+
+    i >> j;
+
+    i.close();
+
+    std::vector<doubleArray> inputData = j["inputData"].get< std::vector<doubleArray> >();
+    
+    std::vector<doubleArray> outputData = j["outputData"].get< std::vector<doubleArray> >();
+
+    for(int i = 0; i < inputData.size(); i++){
+
+        this->train(inputData[i], outputData[i]);
+
+    }
+
+}
+
+void Network::train(const doubleArray &in, const doubleArray &out){
+
+    std::vector< doubleArray > layerOutputs;
+
+    doubleArray temp = in;
+
+    for(const auto &layer : this->layers){
+
+        temp = layer->feed(temp);
+
+        layerOutputs.push_back(temp);
+
+    }
+
+    doubleArray deltas;
+
+    // First train the output layer that is different
+
+    deltas = this->outputLayer->trainLayer(
+        out,
+        layerOutputs.back(),
+        layerOutputs[layerOutputs.size() - 2]
+    );
+
+    for(int i = this->layers.size() - 2; i >= 1; i--){
+
+        if(this->layers[i]->getType() != "hidden") break;
+
+        HiddenLayer *curr = (HiddenLayer*) this->layers[i].get();
+
+        deltas = curr->trainLayer(
+            deltas,
+            this->layers[i + 1],
+            layerOutputs[layerOutputs.size() - 1 - i],
+            layerOutputs[layerOutputs.size() - 2 - i]
+        );
+
+    }
 
 }

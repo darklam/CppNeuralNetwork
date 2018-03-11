@@ -27,6 +27,8 @@ public:
 
     virtual neuronArray const getNeurons();
 
+    virtual std::string getType();
+
 };
 
 typedef std::shared_ptr<Layer> layerPtr;

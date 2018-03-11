@@ -34,6 +34,10 @@ public:
 
     doubleArray feed(const doubleArray &);
 
+    void train(const std::string &);
+
+    void train(const doubleArray &, const doubleArray &);
+
 
 
 };

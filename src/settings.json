@@ -2,13 +2,13 @@
     "momentums": [
         0.1,
         0.3,
-        0.4
+        0.6
     ],
-    "inputs": 4,
-    "outputs": 2,
+    "inputs": 2,
+    "outputs": 1,
     "hiddenLayers": [
-        7,
-        4
+        3,
+        5
     ],
     "learningRates": [
         0.1,

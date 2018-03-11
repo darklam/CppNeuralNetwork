@@ -23,6 +23,11 @@ doubleArray HiddenLayer::feed(const doubleArray &in){
 
 }
 
+// Don't know why I put const in the layerPtr argument to the right
+// while the rest are to the left (makes no difference) but I'll
+// keep it there to give the code some character before it develops
+// one on its own lol
+
 doubleArray HiddenLayer::trainLayer(
 
     const doubleArray &nextDeltas,
@@ -37,7 +42,9 @@ doubleArray HiddenLayer::trainLayer(
 
     layerDeltas.resize(this->getNeuronCount());
 
-    for(int i = 0; i < this->getNeuronCount(); i++){
+    // The -1 omits the last neuron (the bias)
+
+    for(int i = 0; i < this->getNeuronCount() - 1; i++){
 
         double sum = 0.0;
 

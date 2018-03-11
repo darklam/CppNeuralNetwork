@@ -25,6 +25,8 @@ double Neuron::feed(const doubleArray &in){
 void Neuron::train(const doubleArray &deltas, const double &learningRate, const double &momentum){
     if(this->lastDeltas.empty()){
 
+        this->lastDeltas.resize(this->weights.size());
+
         for(int i = 0; i < this->weights.size(); i++){
             this->lastDeltas[i] = deltas[i] * learningRate;
             this->weights[i] -= lastDeltas[i];

@@ -39,7 +39,7 @@ doubleArray OutputLayer::trainLayer(
 
         for(int j = 0; j < deltas.size(); j++){
 
-            deltas.push_back(previousActivations[j] * deltaCurrent);
+            deltas[j] = previousActivations[j] * deltaCurrent;
 
         }
 
