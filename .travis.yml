@@ -1,5 +1,7 @@
 language: c++
 
+compiler: g++-7
+
 script: cd src && make
 
 matrix:
