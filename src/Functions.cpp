@@ -35,8 +35,6 @@ double Functions::squaredError(const doubleArray &expected, const doubleArray &o
 
     }
 
-    sum /= (double) expected.size();
-
     return sum;
 
 }

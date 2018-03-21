@@ -8,10 +8,10 @@
     "outputData": [
         [1.0],
         [1.0],
-        [0.0],
+        [1.0],
         [0.0]
     ],
     "trainEpoch": 0,
     "errorData": true,
-    "errorTarget": 0.01
+    "errorTarget": 0
 }
